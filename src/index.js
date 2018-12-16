@@ -1,0 +1,37 @@
+import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
+import { createGlobalStyle } from "styled-components";
+//Components
+import Card from "./components/Card";
+//Containers
+import Details from "./Details";
+import { default as SignIn } from "./SignIn";
+import { default as SignUp } from "./SignUp";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #E7EBF0 !important;
+    width: 100%;
+    height: 100vh;
+   }
+`;
+
+export default class ExampleComponent extends Component {
+  static propTypes = {
+    children: PropTypes.any.isRequired
+  };
+
+  render() {
+    return (
+      <Fragment>
+        <Card>
+          <Details {...this.props} />
+          {this.props.children}
+        </Card>
+        <GlobalStyle />
+      </Fragment>
+    );
+  }
+}
+
+export { SignIn, SignUp };
