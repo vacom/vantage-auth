@@ -22,7 +22,7 @@ const Box = styled.div`
   }
   p,
   a {
-    color: #a189d6;
+    color: ${props => props.textColor || `#a189d6`};
   }
 
   @media (max-width: 767.98px) {
@@ -33,13 +33,15 @@ const Box = styled.div`
 Box.defaultProps = {
   backgroundColor: "#f6f4fd",
   borderColor: "#e6e1f7",
-  marginTop: "160px"
+  marginTop: "160px",
+  textColor: "#a189d6"
 };
 
 Box.propTypes = {
   backgroundColor: PropTypes.string,
   borderColor: PropTypes.string,
-  marginTop: PropTypes.string
+  marginTop: PropTypes.string,
+  textColor: PropTypes.string
 };
 
 export default Box;

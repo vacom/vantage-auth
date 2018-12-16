@@ -43,7 +43,9 @@ export default class SignUp extends PureComponent {
     handleSubmit: PropTypes.func.isRequired,
     boxText: PropTypes.string,
     boxAction: PropTypes.string,
-    boxUrl: PropTypes.string.isRequired
+    boxUrl: PropTypes.string.isRequired,
+    primaryColor: PropTypes.string,
+    box: PropTypes.object
   };
   render() {
     const {
@@ -52,7 +54,9 @@ export default class SignUp extends PureComponent {
       submitText,
       boxText,
       boxAction,
-      boxUrl
+      boxUrl,
+      primaryColor,
+      box
     } = this.props;
     return (
       <CardBody>
@@ -127,12 +131,14 @@ export default class SignUp extends PureComponent {
                   <Error>{errors.approvePrivacy}</Error>
                 ) : null}
 
-                <Button type="submit">{submitText}</Button>
+                <Button primaryColor={primaryColor} type="submit">
+                  {submitText}
+                </Button>
               </Form>
             )}
           </Formik>
         </Container>
-        <Box marginTop="60px">
+        <Box marginTop="60px" {...box}>
           <Text>
             {boxText} <a href={boxUrl}>{boxAction}</a>
           </Text>

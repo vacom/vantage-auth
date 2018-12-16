@@ -14079,7 +14079,7 @@ Button.propTypes = {
   primaryColor: PropTypes.string
 };
 
-var _templateObject$a = taggedTemplateLiteral(["\n  background-color: ", ";\n  border: 1px solid ", ";\n  border-radius: 4px;\n  padding: 14px 24px;\n  margin-top: ", ";\n  margin-left: 40px;\n  margin-right: 40px;\n  a {\n    font-weight: bold;\n    &:hover {\n      cursor: pointer;\n      text-decoration: underline;\n    }\n  }\n  p {\n    margin: 0;\n  }\n  p,\n  a {\n    color: #a189d6;\n  }\n\n  @media (max-width: 767.98px) {\n    margin-bottom: 60px;\n  }\n"], ["\n  background-color: ", ";\n  border: 1px solid ", ";\n  border-radius: 4px;\n  padding: 14px 24px;\n  margin-top: ", ";\n  margin-left: 40px;\n  margin-right: 40px;\n  a {\n    font-weight: bold;\n    &:hover {\n      cursor: pointer;\n      text-decoration: underline;\n    }\n  }\n  p {\n    margin: 0;\n  }\n  p,\n  a {\n    color: #a189d6;\n  }\n\n  @media (max-width: 767.98px) {\n    margin-bottom: 60px;\n  }\n"]);
+var _templateObject$a = taggedTemplateLiteral(["\n  background-color: ", ";\n  border: 1px solid ", ";\n  border-radius: 4px;\n  padding: 14px 24px;\n  margin-top: ", ";\n  margin-left: 40px;\n  margin-right: 40px;\n  a {\n    font-weight: bold;\n    &:hover {\n      cursor: pointer;\n      text-decoration: underline;\n    }\n  }\n  p {\n    margin: 0;\n  }\n  p,\n  a {\n    color: ", ";\n  }\n\n  @media (max-width: 767.98px) {\n    margin-bottom: 60px;\n  }\n"], ["\n  background-color: ", ";\n  border: 1px solid ", ";\n  border-radius: 4px;\n  padding: 14px 24px;\n  margin-top: ", ";\n  margin-left: 40px;\n  margin-right: 40px;\n  a {\n    font-weight: bold;\n    &:hover {\n      cursor: pointer;\n      text-decoration: underline;\n    }\n  }\n  p {\n    margin: 0;\n  }\n  p,\n  a {\n    color: ", ";\n  }\n\n  @media (max-width: 767.98px) {\n    margin-bottom: 60px;\n  }\n"]);
 
 var Box = styled__default.div(_templateObject$a, function (props) {
   return props.backgroundColor || "#f6f4fd";
@@ -14087,18 +14087,22 @@ var Box = styled__default.div(_templateObject$a, function (props) {
   return props.borderColor || "#e6e1f7";
 }, function (props) {
   return props.marginTop || "160px";
+}, function (props) {
+  return props.textColor || "#a189d6";
 });
 
 Box.defaultProps = {
   backgroundColor: "#f6f4fd",
   borderColor: "#e6e1f7",
-  marginTop: "160px"
+  marginTop: "160px",
+  textColor: "#a189d6"
 };
 
 Box.propTypes = {
   backgroundColor: PropTypes.string,
   borderColor: PropTypes.string,
-  marginTop: PropTypes.string
+  marginTop: PropTypes.string,
+  textColor: PropTypes.string
 };
 
 var _templateObject$b = taggedTemplateLiteral(["\n  margin-bottom: 14px !important;\n  margin-top: 0 !important;\n  color: ", ";\n"], ["\n  margin-bottom: 14px !important;\n  margin-top: 0 !important;\n  color: ", ";\n"]);
@@ -14141,7 +14145,9 @@ var SignIn = function (_PureComponent) {
           submitText = _props.submitText,
           boxText = _props.boxText,
           boxAction = _props.boxAction,
-          boxUrl = _props.boxUrl;
+          boxUrl = _props.boxUrl,
+          primaryColor = _props.primaryColor,
+          box = _props.box;
 
       return React__default.createElement(
         CardBody,
@@ -14203,7 +14209,7 @@ var SignIn = function (_PureComponent) {
                 ) : null,
                 React__default.createElement(
                   Button,
-                  { type: "submit" },
+                  { primaryColor: primaryColor, type: "submit" },
                   submitText
                 )
               );
@@ -14212,7 +14218,7 @@ var SignIn = function (_PureComponent) {
         ),
         React__default.createElement(
           Box,
-          null,
+          box,
           React__default.createElement(
             Text,
             null,
@@ -14245,7 +14251,9 @@ SignIn.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   boxText: PropTypes.string,
   boxAction: PropTypes.string,
-  boxUrl: PropTypes.string.isRequired
+  boxUrl: PropTypes.string.isRequired,
+  primaryColor: PropTypes.string,
+  box: PropTypes.object
 };
 
 var _templateObject$c = taggedTemplateLiteral(["\n  color: ", ";\n  text-decoration: none;\n"], ["\n  color: ", ";\n  text-decoration: none;\n"]);
@@ -14290,7 +14298,9 @@ var SignUp = function (_PureComponent) {
           submitText = _props.submitText,
           boxText = _props.boxText,
           boxAction = _props.boxAction,
-          boxUrl = _props.boxUrl;
+          boxUrl = _props.boxUrl,
+          primaryColor = _props.primaryColor,
+          box = _props.box;
 
       return React__default.createElement(
         CardBody,
@@ -14396,7 +14406,7 @@ var SignUp = function (_PureComponent) {
                 ) : null,
                 React__default.createElement(
                   Button,
-                  { type: "submit" },
+                  { primaryColor: primaryColor, type: "submit" },
                   submitText
                 )
               );
@@ -14405,7 +14415,7 @@ var SignUp = function (_PureComponent) {
         ),
         React__default.createElement(
           Box,
-          { marginTop: "60px" },
+          _extends({ marginTop: "60px" }, box),
           React__default.createElement(
             Text,
             null,
@@ -14438,12 +14448,16 @@ SignUp.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   boxText: PropTypes.string,
   boxAction: PropTypes.string,
-  boxUrl: PropTypes.string.isRequired
+  boxUrl: PropTypes.string.isRequired,
+  primaryColor: PropTypes.string,
+  box: PropTypes.object
 };
 
-var _templateObject$d = taggedTemplateLiteral(["\n  body {\n    background-color: #E7EBF0 !important;\n    width: 100%;\n    height: 100vh;\n   }\n"], ["\n  body {\n    background-color: #E7EBF0 !important;\n    width: 100%;\n    height: 100vh;\n   }\n"]);
+var _templateObject$d = taggedTemplateLiteral(["\n  body {\n    background-color: ", " !important;\n    width: 100%;\n    height: 100vh;\n   }\n"], ["\n  body {\n    background-color: ", " !important;\n    width: 100%;\n    height: 100vh;\n   }\n"]);
 
-var GlobalStyle = styled.createGlobalStyle(_templateObject$d);
+var GlobalStyle = styled.createGlobalStyle(_templateObject$d, function (props) {
+  return props.backgroundColor || "#E7EBF0";
+});
 
 var ExampleComponent = function (_Component) {
   inherits(ExampleComponent, _Component);
@@ -14465,7 +14479,7 @@ var ExampleComponent = function (_Component) {
           React__default.createElement(Details, this.props),
           this.props.children
         ),
-        React__default.createElement(GlobalStyle, null)
+        React__default.createElement(GlobalStyle, { backgroundColor: this.props.backgroundColor })
       );
     }
   }]);
@@ -14473,7 +14487,8 @@ var ExampleComponent = function (_Component) {
 }(React.Component);
 
 ExampleComponent.propTypes = {
-  children: PropTypes.any.isRequired
+  children: PropTypes.any.isRequired,
+  backgroundColor: PropTypes.string
 };
 
 exports.default = ExampleComponent;

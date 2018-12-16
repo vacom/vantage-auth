@@ -4,10 +4,11 @@ import Auth, { SignIn, SignUp } from "vantage-auth";
 
 const config = {
   imgSrc: "http://i68.tinypic.com/2po1mcg.jpg",
-  title: "Spotaste",
+  title: "Formette",
   titleColor: "#EFECF8",
   description: "Forms as a Service",
   descriptionColor: "#BBAAE1",
+  backgroundColor: "#E7EBF0",
   gradient:
     "linear-gradient(to right top, #041636, #1c2850, #343a6b, #4d4e87,#6862a4)"
 };
@@ -18,7 +19,13 @@ const signInConfig = {
   submitText: "Sign in",
   boxText: "Do not have an account yet?",
   boxAction: "Sign Up",
-  boxUrl: "/signup"
+  boxUrl: "/signup",
+  primaryColor: "#6862A4",
+  box: {
+    backgroundColor: "#f6f4fd",
+    borderColor: "#e6e1f7",
+    textColor: "#a189d6"
+  }
 };
 
 const signUpConfig = {
@@ -27,7 +34,13 @@ const signUpConfig = {
   submitText: "Sign up",
   boxText: "Already have an account?",
   boxAction: "Sign In",
-  boxUrl: "/signup"
+  boxUrl: "/signup",
+  primaryColor: "#6862A4",
+  box: {
+    backgroundColor: "#f6f4fd",
+    borderColor: "#e6e1f7",
+    textColor: "#a189d6"
+  }
 };
 
 export default class App extends Component {

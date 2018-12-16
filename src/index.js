@@ -10,7 +10,7 @@ import { default as SignUp } from "./SignUp";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: #E7EBF0 !important;
+    background-color: ${props => props.backgroundColor || `#E7EBF0`} !important;
     width: 100%;
     height: 100vh;
    }
@@ -18,9 +18,9 @@ const GlobalStyle = createGlobalStyle`
 
 export default class ExampleComponent extends Component {
   static propTypes = {
-    children: PropTypes.any.isRequired
+    children: PropTypes.any.isRequired,
+    backgroundColor: PropTypes.string
   };
-
   render() {
     return (
       <Fragment>
@@ -28,7 +28,7 @@ export default class ExampleComponent extends Component {
           <Details {...this.props} />
           {this.props.children}
         </Card>
-        <GlobalStyle />
+        <GlobalStyle backgroundColor={this.props.backgroundColor} />
       </Fragment>
     );
   }
