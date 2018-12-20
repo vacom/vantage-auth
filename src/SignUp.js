@@ -13,21 +13,6 @@ import Box from "./components/Box";
 import Error from "./components/Error";
 import Link from "./components/Link";
 
-const SignUpSchema = Yup.object().shape({
-  password: Yup.string()
-    .min(8, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  email: Yup.string()
-    .email("Invalid email")
-    .required("Required"),
-  username: Yup.string()
-    .min(4, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  approvePrivacy: Yup.bool().required("Required")
-});
-
 export default class SignUp extends PureComponent {
   static defaultProps = {
     title: "Sign Up",
@@ -35,17 +20,42 @@ export default class SignUp extends PureComponent {
     submitText: "Sign up",
     boxText: "Already have an account?",
     boxAction: "Sign In",
-    boxUrl: "/signup"
+    boxUrl: "/signup",
+    validationMgs: {
+      username: {
+        min: "Too Short!",
+        max: "Too Long!",
+        required: "Required"
+      },
+      email: {
+        invalid: "Invalid email",
+        required: "Required"
+      },
+      password: {
+        min: "Too Short!",
+        max: "Too Long!",
+        required: "Required"
+      },
+      approvePrivacy: {
+        required: "Required"
+      }
+    },
+    customError: false,
+    customErrorMsg: ""
   };
   static propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    privacyUrl: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     boxText: PropTypes.string,
     boxAction: PropTypes.string,
     boxUrl: PropTypes.string.isRequired,
     primaryColor: PropTypes.string,
-    box: PropTypes.object
+    box: PropTypes.object,
+    validationMgs: PropTypes.object.isRequired,
+    customError: PropTypes.bool,
+    customErrorMsg: PropTypes.string
   };
   render() {
     const {
@@ -56,8 +66,13 @@ export default class SignUp extends PureComponent {
       boxAction,
       boxUrl,
       primaryColor,
-      box
+      box,
+      privacyUrl,
+      validationMgs,
+      customError,
+      customErrorMsg
     } = this.props;
+
     return (
       <CardBody>
         <Container>
@@ -70,7 +85,22 @@ export default class SignUp extends PureComponent {
               username: "",
               approvePrivacy: false
             }}
-            validationSchema={SignUpSchema}
+            validationSchema={Yup.object().shape({
+              username: Yup.string()
+                .min(4, validationMgs.username.min)
+                .max(50, validationMgs.username.max)
+                .required(validationMgs.username.required),
+              email: Yup.string()
+                .email(validationMgs.email.invalid)
+                .required(validationMgs.email.required),
+              password: Yup.string()
+                .min(8, validationMgs.password.min)
+                .max(50, validationMgs.password.max)
+                .required(validationMgs.password.required),
+              approvePrivacy: Yup.bool().required(
+                validationMgs.approvePrivacy.required
+              )
+            })}
             onSubmit={values => {
               this.props.handleSubmit(values);
             }}
@@ -118,10 +148,7 @@ export default class SignUp extends PureComponent {
                         required
                         autoFocus
                       />{" "}
-                      <Link
-                        href="https://www.iubenda.com/privacy-policy/54274847/legal?ifr=true&height=690"
-                        target="_blank"
-                      >
+                      <Link href={privacyUrl} target="_blank">
                         Accept the Terms and Privacy Policy
                       </Link>
                     </span>
@@ -130,6 +157,8 @@ export default class SignUp extends PureComponent {
                 {errors.approvePrivacy && touched.approvePrivacy ? (
                   <Error>{errors.approvePrivacy}</Error>
                 ) : null}
+
+                {customError && <Error>{customErrorMsg}</Error>}
 
                 <Button primaryColor={primaryColor} type="submit">
                   {submitText}
@@ -140,7 +169,7 @@ export default class SignUp extends PureComponent {
         </Container>
         <Box marginTop="60px" {...box}>
           <Text>
-            {boxText} <a href={boxUrl}>{boxAction}</a>
+            {boxText} <Link href={boxUrl}>{boxAction}</Link>
           </Text>
         </Box>
       </CardBody>

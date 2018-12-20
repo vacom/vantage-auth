@@ -25,6 +25,17 @@ const signInConfig = {
     backgroundColor: "#f6f4fd",
     borderColor: "#e6e1f7",
     textColor: "#a189d6"
+  },
+  validationMgs: {
+    email: {
+      invalid: "Invalid email!",
+      required: "Email is Required"
+    },
+    password: {
+      min: "Password is Too Short!",
+      max: "Password is Too Long!",
+      required: "Password is Required"
+    }
   }
 };
 
@@ -36,16 +47,43 @@ const signUpConfig = {
   boxAction: "Sign In",
   boxUrl: "/signup",
   primaryColor: "#6862A4",
+  privacyUrl: "http://www.privacy.com",
   box: {
     backgroundColor: "#f6f4fd",
     borderColor: "#e6e1f7",
     textColor: "#a189d6"
+  },
+  validationMgs: {
+    username: {
+      min: "The username is too Short!",
+      max: "The username is too Long!",
+      required: "Please the username is Required"
+    },
+    email: {
+      invalid: "Invalid email",
+      required: "Please enter the Required"
+    },
+    password: {
+      min: "Too Short! Password",
+      max: "Too Long!",
+      required: "Password Required"
+    },
+    approvePrivacy: {
+      required: "approvePrivacy Required"
+    }
   }
 };
 
 export default class App extends Component {
   state = {
-    login: true
+    login: true,
+    error: false
+  };
+  _customError = () => {
+    this.setState({ error: true });
+    setTimeout(() => {
+      this.setState({ error: false });
+    }, 2000);
   };
   signInUser = values => {
     console.log("signInUser = ", values);
@@ -57,7 +95,12 @@ export default class App extends Component {
     return (
       <Auth {...config}>
         {this.state.login ? (
-          <SignIn {...signInConfig} handleSubmit={this.signInUser} />
+          <SignIn
+            {...signInConfig}
+            handleSubmit={this.signInUser}
+            customError={this.state.error}
+            customErrorMsg="Erro new error"
+          />
         ) : (
           <SignUp {...signUpConfig} handleSubmit={this.signUpUser} />
         )}

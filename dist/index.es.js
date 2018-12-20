@@ -4668,6 +4668,7 @@ function (_super) {
 var ErrorMessage =
 /*#__PURE__*/
 connect(ErrorMessageImpl);
+//# sourceMappingURL=formik.esm.js.map
 
 var interopRequireDefault$1 = createCommonjsModule(function (module) {
 function _interopRequireDefault(obj) {
@@ -14113,10 +14114,21 @@ Error$1.propTypes = {
   textColor: PropTypes.string
 };
 
-var SignInSchema = lib_9().shape({
-  password: lib_6().min(8, "Too Short!").max(50, "Too Long!").required("Required"),
-  email: lib_6().email("Invalid email").required("Required")
+var _templateObject$c = taggedTemplateLiteral(["\n  color: ", ";\n  text-decoration: none;\n"], ["\n  color: ", ";\n  text-decoration: none;\n"]);
+
+var Link = styled.a(_templateObject$c, function (props) {
+  return props.textColor;
 });
+
+Link.defaultProps = {
+  text: "Text Link",
+  textColor: "#868e96"
+};
+
+Link.propTypes = {
+  text: PropTypes.string,
+  textColor: PropTypes.string
+};
 
 var SignIn = function (_PureComponent) {
   inherits(SignIn, _PureComponent);
@@ -14139,7 +14151,10 @@ var SignIn = function (_PureComponent) {
           boxAction = _props.boxAction,
           boxUrl = _props.boxUrl,
           primaryColor = _props.primaryColor,
-          box = _props.box;
+          box = _props.box,
+          validationMgs = _props.validationMgs,
+          customError = _props.customError,
+          customErrorMsg = _props.customErrorMsg;
 
       return React.createElement(
         CardBody,
@@ -14164,7 +14179,10 @@ var SignIn = function (_PureComponent) {
                 email: "",
                 password: ""
               },
-              validationSchema: SignInSchema,
+              validationSchema: lib_9().shape({
+                password: lib_6().min(8, validationMgs.password.min).max(50, validationMgs.password.max).required(validationMgs.password.required),
+                email: lib_6().email(validationMgs.email.invalid).required(validationMgs.email.required)
+              }),
               onSubmit: function onSubmit(values) {
                 _this2.props.handleSubmit(values);
               }
@@ -14199,6 +14217,11 @@ var SignIn = function (_PureComponent) {
                   null,
                   errors.password
                 ) : null,
+                customError && React.createElement(
+                  Error$1,
+                  null,
+                  customErrorMsg
+                ),
                 React.createElement(
                   Button,
                   { primaryColor: primaryColor, type: "submit" },
@@ -14217,7 +14240,7 @@ var SignIn = function (_PureComponent) {
             boxText,
             " ",
             React.createElement(
-              "a",
+              Link,
               { href: boxUrl },
               boxAction
             )
@@ -14235,7 +14258,20 @@ SignIn.defaultProps = {
   submitText: "Sign in",
   boxText: "Do not have an account yet?",
   boxAction: "Sign Up",
-  boxUrl: "/signup"
+  boxUrl: "/signup",
+  validationMgs: {
+    email: {
+      invalid: "Invalid email",
+      required: "Required"
+    },
+    password: {
+      min: "Too Short!",
+      max: "Too Long!",
+      required: "Required"
+    }
+  },
+  customError: false,
+  customErrorMsg: ""
 };
 SignIn.propTypes = {
   title: PropTypes.string.isRequired,
@@ -14245,31 +14281,11 @@ SignIn.propTypes = {
   boxAction: PropTypes.string,
   boxUrl: PropTypes.string.isRequired,
   primaryColor: PropTypes.string,
-  box: PropTypes.object
+  box: PropTypes.object,
+  validationMgs: PropTypes.object.isRequired,
+  customError: PropTypes.bool,
+  customErrorMsg: PropTypes.string
 };
-
-var _templateObject$c = taggedTemplateLiteral(["\n  color: ", ";\n  text-decoration: none;\n"], ["\n  color: ", ";\n  text-decoration: none;\n"]);
-
-var Link = styled.a(_templateObject$c, function (props) {
-  return props.textColor;
-});
-
-Link.defaultProps = {
-  text: "Text Link",
-  textColor: "#868e96"
-};
-
-Link.propTypes = {
-  text: PropTypes.string,
-  textColor: PropTypes.string
-};
-
-var SignUpSchema = lib_9().shape({
-  password: lib_6().min(8, "Too Short!").max(50, "Too Long!").required("Required"),
-  email: lib_6().email("Invalid email").required("Required"),
-  username: lib_6().min(4, "Too Short!").max(50, "Too Long!").required("Required"),
-  approvePrivacy: lib_5().required("Required")
-});
 
 var SignUp = function (_PureComponent) {
   inherits(SignUp, _PureComponent);
@@ -14292,7 +14308,12 @@ var SignUp = function (_PureComponent) {
           boxAction = _props.boxAction,
           boxUrl = _props.boxUrl,
           primaryColor = _props.primaryColor,
-          box = _props.box;
+          box = _props.box,
+          privacyUrl = _props.privacyUrl,
+          validationMgs = _props.validationMgs,
+          customError = _props.customError,
+          customErrorMsg = _props.customErrorMsg;
+
 
       return React.createElement(
         CardBody,
@@ -14319,7 +14340,12 @@ var SignUp = function (_PureComponent) {
                 username: "",
                 approvePrivacy: false
               },
-              validationSchema: SignUpSchema,
+              validationSchema: lib_9().shape({
+                username: lib_6().min(4, validationMgs.username.min).max(50, validationMgs.username.max).required(validationMgs.username.required),
+                email: lib_6().email(validationMgs.email.invalid).required(validationMgs.email.required),
+                password: lib_6().min(8, validationMgs.password.min).max(50, validationMgs.password.max).required(validationMgs.password.required),
+                approvePrivacy: lib_5().required(validationMgs.approvePrivacy.required)
+              }),
               onSubmit: function onSubmit(values) {
                 _this2.props.handleSubmit(values);
               }
@@ -14382,10 +14408,7 @@ var SignUp = function (_PureComponent) {
                       " ",
                       React.createElement(
                         Link,
-                        {
-                          href: "https://www.iubenda.com/privacy-policy/54274847/legal?ifr=true&height=690",
-                          target: "_blank"
-                        },
+                        { href: privacyUrl, target: "_blank" },
                         "Accept the Terms and Privacy Policy"
                       )
                     );
@@ -14396,6 +14419,11 @@ var SignUp = function (_PureComponent) {
                   null,
                   errors.approvePrivacy
                 ) : null,
+                customError && React.createElement(
+                  Error$1,
+                  null,
+                  customErrorMsg
+                ),
                 React.createElement(
                   Button,
                   { primaryColor: primaryColor, type: "submit" },
@@ -14414,7 +14442,7 @@ var SignUp = function (_PureComponent) {
             boxText,
             " ",
             React.createElement(
-              "a",
+              Link,
               { href: boxUrl },
               boxAction
             )
@@ -14432,17 +14460,42 @@ SignUp.defaultProps = {
   submitText: "Sign up",
   boxText: "Already have an account?",
   boxAction: "Sign In",
-  boxUrl: "/signup"
+  boxUrl: "/signup",
+  validationMgs: {
+    username: {
+      min: "Too Short!",
+      max: "Too Long!",
+      required: "Required"
+    },
+    email: {
+      invalid: "Invalid email",
+      required: "Required"
+    },
+    password: {
+      min: "Too Short!",
+      max: "Too Long!",
+      required: "Required"
+    },
+    approvePrivacy: {
+      required: "Required"
+    }
+  },
+  customError: false,
+  customErrorMsg: ""
 };
 SignUp.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  privacyUrl: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   boxText: PropTypes.string,
   boxAction: PropTypes.string,
   boxUrl: PropTypes.string.isRequired,
   primaryColor: PropTypes.string,
-  box: PropTypes.object
+  box: PropTypes.object,
+  validationMgs: PropTypes.object.isRequired,
+  customError: PropTypes.bool,
+  customErrorMsg: PropTypes.string
 };
 
 var _templateObject$d = taggedTemplateLiteral(["\n  body {\n    background-color: ", " !important;\n    width: 100%;\n    height: 100vh;\n   }\n"], ["\n  body {\n    background-color: ", " !important;\n    width: 100%;\n    height: 100vh;\n   }\n"]);

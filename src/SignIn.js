@@ -11,16 +11,7 @@ import Text from "./components/Text";
 import Button from "./components/Button";
 import Box from "./components/Box";
 import Error from "./components/Error";
-
-const SignInSchema = Yup.object().shape({
-  password: Yup.string()
-    .min(8, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  email: Yup.string()
-    .email("Invalid email")
-    .required("Required")
-});
+import Link from "./components/Link";
 
 export default class SignIn extends PureComponent {
   static defaultProps = {
@@ -29,7 +20,20 @@ export default class SignIn extends PureComponent {
     submitText: "Sign in",
     boxText: "Do not have an account yet?",
     boxAction: "Sign Up",
-    boxUrl: "/signup"
+    boxUrl: "/signup",
+    validationMgs: {
+      email: {
+        invalid: "Invalid email",
+        required: "Required"
+      },
+      password: {
+        min: "Too Short!",
+        max: "Too Long!",
+        required: "Required"
+      }
+    },
+    customError: false,
+    customErrorMsg: ""
   };
   static propTypes = {
     title: PropTypes.string.isRequired,
@@ -39,7 +43,10 @@ export default class SignIn extends PureComponent {
     boxAction: PropTypes.string,
     boxUrl: PropTypes.string.isRequired,
     primaryColor: PropTypes.string,
-    box: PropTypes.object
+    box: PropTypes.object,
+    validationMgs: PropTypes.object.isRequired,
+    customError: PropTypes.bool,
+    customErrorMsg: PropTypes.string
   };
   render() {
     const {
@@ -50,7 +57,10 @@ export default class SignIn extends PureComponent {
       boxAction,
       boxUrl,
       primaryColor,
-      box
+      box,
+      validationMgs,
+      customError,
+      customErrorMsg
     } = this.props;
     return (
       <CardBody>
@@ -62,7 +72,15 @@ export default class SignIn extends PureComponent {
               email: "",
               password: ""
             }}
-            validationSchema={SignInSchema}
+            validationSchema={Yup.object().shape({
+              password: Yup.string()
+                .min(8, validationMgs.password.min)
+                .max(50, validationMgs.password.max)
+                .required(validationMgs.password.required),
+              email: Yup.string()
+                .email(validationMgs.email.invalid)
+                .required(validationMgs.email.required)
+            })}
             onSubmit={values => {
               this.props.handleSubmit(values);
             }}
@@ -89,6 +107,8 @@ export default class SignIn extends PureComponent {
                   <Error>{errors.password}</Error>
                 ) : null}
 
+                {customError && <Error>{customErrorMsg}</Error>}
+
                 <Button primaryColor={primaryColor} type="submit">
                   {submitText}
                 </Button>
@@ -96,9 +116,9 @@ export default class SignIn extends PureComponent {
             )}
           </Formik>
         </Container>
-        <Box  {...box}>
+        <Box {...box}>
           <Text>
-            {boxText} <a href={boxUrl}>{boxAction}</a>
+            {boxText} <Link href={boxUrl}>{boxAction}</Link>
           </Text>
         </Box>
       </CardBody>
