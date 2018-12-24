@@ -55,6 +55,7 @@ const signUpConfig = {
   },
   validationMgs: {
     username: {
+      lowercase: "username must be a lowercase string",
       min: "The username is too Short!",
       max: "The username is too Long!",
       required: "Please the username is Required"
@@ -76,8 +77,9 @@ const signUpConfig = {
 
 export default class App extends Component {
   state = {
-    login: true,
-    error: false
+    login: false,
+    error: false,
+    isSubmiting: false
   };
   _customError = () => {
     this.setState({ error: true });
@@ -85,11 +87,12 @@ export default class App extends Component {
       this.setState({ error: false });
     }, 2000);
   };
-  signInUser = values => {
+  signUser = values => {
     console.log("signInUser = ", values);
-  };
-  signUpUser = values => {
-    console.log("signUpUser = ", values);
+    this.setState({ isSubmiting: true });
+    setTimeout(() => {
+      this.setState({ isSubmiting: false });
+    }, 3000);
   };
   render() {
     return (
@@ -97,12 +100,17 @@ export default class App extends Component {
         {this.state.login ? (
           <SignIn
             {...signInConfig}
-            handleSubmit={this.signInUser}
+            handleSubmit={this.signUser}
             customError={this.state.error}
             customErrorMsg="Erro new error"
+            isSubmiting={this.state.isSubmiting}
           />
         ) : (
-          <SignUp {...signUpConfig} handleSubmit={this.signUpUser} />
+          <SignUp
+            {...signUpConfig}
+            handleSubmit={this.signUser}
+            isSubmiting={this.state.isSubmiting}
+          />
         )}
       </Auth>
     );

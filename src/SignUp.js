@@ -12,6 +12,7 @@ import Button from "./components/Button";
 import Box from "./components/Box";
 import Error from "./components/Error";
 import Link from "./components/Link";
+import Spinner from "./components/Spinner";
 
 export default class SignUp extends PureComponent {
   static defaultProps = {
@@ -23,6 +24,7 @@ export default class SignUp extends PureComponent {
     boxUrl: "/signup",
     validationMgs: {
       username: {
+        lowercase: "username must be a lowercase string",
         min: "Too Short!",
         max: "Too Long!",
         required: "Required"
@@ -41,7 +43,8 @@ export default class SignUp extends PureComponent {
       }
     },
     customError: false,
-    customErrorMsg: ""
+    customErrorMsg: "",
+    isSubmiting: false
   };
   static propTypes = {
     title: PropTypes.string.isRequired,
@@ -55,7 +58,8 @@ export default class SignUp extends PureComponent {
     box: PropTypes.object,
     validationMgs: PropTypes.object.isRequired,
     customError: PropTypes.bool,
-    customErrorMsg: PropTypes.string
+    customErrorMsg: PropTypes.string,
+    isSubmiting: PropTypes.bool
   };
   render() {
     const {
@@ -70,7 +74,8 @@ export default class SignUp extends PureComponent {
       privacyUrl,
       validationMgs,
       customError,
-      customErrorMsg
+      customErrorMsg,
+      isSubmiting
     } = this.props;
 
     return (
@@ -87,6 +92,9 @@ export default class SignUp extends PureComponent {
             }}
             validationSchema={Yup.object().shape({
               username: Yup.string()
+                .trim()
+                .lowercase(validationMgs.username.lowercase)
+                .strict()
                 .min(4, validationMgs.username.min)
                 .max(50, validationMgs.username.max)
                 .required(validationMgs.username.required),
@@ -110,7 +118,12 @@ export default class SignUp extends PureComponent {
                 <Field
                   name="username"
                   render={({ field }) => (
-                    <Input {...field} type="text" placeholder="Username" />
+                    <Input
+                      {...field}
+                      type="text"
+                      placeholder="Username"
+                      disabled={isSubmiting}
+                    />
                   )}
                 />
                 {errors.username && touched.username ? (
@@ -120,7 +133,12 @@ export default class SignUp extends PureComponent {
                 <Field
                   name="email"
                   render={({ field }) => (
-                    <Input {...field} type="email" placeholder="Email" />
+                    <Input
+                      {...field}
+                      type="email"
+                      placeholder="Email"
+                      disabled={isSubmiting}
+                    />
                   )}
                 />
                 {errors.email && touched.email ? (
@@ -130,7 +148,12 @@ export default class SignUp extends PureComponent {
                 <Field
                   name="password"
                   render={({ field }) => (
-                    <Input {...field} type="password" placeholder="password" />
+                    <Input
+                      {...field}
+                      type="password"
+                      placeholder="password"
+                      disabled={isSubmiting}
+                    />
                   )}
                 />
                 {errors.password && touched.password ? (
@@ -147,6 +170,7 @@ export default class SignUp extends PureComponent {
                         type="checkbox"
                         required
                         autoFocus
+                        disabled={isSubmiting}
                       />{" "}
                       <Link href={privacyUrl} target="_blank">
                         Accept the Terms and Privacy Policy
@@ -160,7 +184,12 @@ export default class SignUp extends PureComponent {
 
                 {customError && <Error>{customErrorMsg}</Error>}
 
-                <Button primaryColor={primaryColor} type="submit">
+                <Button
+                  primaryColor={primaryColor}
+                  type="submit"
+                  disabled={isSubmiting}
+                >
+                  {isSubmiting && <Spinner />}
                   {submitText}
                 </Button>
               </Form>

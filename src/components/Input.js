@@ -17,6 +17,10 @@ const Input = styled.input`
   background-color: ${props => props.backgroundColor || `#fff`};
   background-clip: padding-box;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  &:disabled {
+    background: #e6ebf1;
+    cursor: not-allowed;
+  }
 `;
 
 Input.defaultProps = {

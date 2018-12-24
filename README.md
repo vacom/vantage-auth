@@ -99,6 +99,7 @@ const signInConfig = {
   boxAction: "Sign Up",
   boxUrl: "/signup",
   primaryColor: "#6862A4",
+  isSubmiting: false,
   box: {
     backgroundColor: "#f6f4fd",
     borderColor: "#e6e1f7",
@@ -138,6 +139,7 @@ const signUpConfig = {
   boxUrl: "/signup",
   primaryColor: "#6862A4",
   privacyUrl: "http://www.privacy.com",
+  isSubmiting: false,
   box: {
     backgroundColor: "#f6f4fd",
     borderColor: "#e6e1f7",
@@ -145,6 +147,7 @@ const signUpConfig = {
   },
   validationMgs: {
     username: {
+      lowercase: "username must be a lowercase string",
       min: "The username is too Short!",
       max: "The username is too Long!",
       required: "Please the username is Required"

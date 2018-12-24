@@ -12747,7 +12747,7 @@ CardBody.propTypes = {
   backgroundColor: PropTypes.string
 };
 
-var _templateObject$7 = taggedTemplateLiteral(["\n  border-radius: 4px;\n  border: 1px solid ", ";\n  box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.2);\n  margin: 10px 0 10px 0;\n  width: 100%;\n  box-sizing: border-box;\n  display: block;\n  padding: 0.5rem 1rem;\n  font-size: 1rem;\n  line-height: 1.5;\n  color: ", ";\n  background-color: ", ";\n  background-clip: padding-box;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n"], ["\n  border-radius: 4px;\n  border: 1px solid ", ";\n  box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.2);\n  margin: 10px 0 10px 0;\n  width: 100%;\n  box-sizing: border-box;\n  display: block;\n  padding: 0.5rem 1rem;\n  font-size: 1rem;\n  line-height: 1.5;\n  color: ", ";\n  background-color: ", ";\n  background-clip: padding-box;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n"]);
+var _templateObject$7 = taggedTemplateLiteral(["\n  border-radius: 4px;\n  border: 1px solid ", ";\n  box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.2);\n  margin: 10px 0 10px 0;\n  width: 100%;\n  box-sizing: border-box;\n  display: block;\n  padding: 0.5rem 1rem;\n  font-size: 1rem;\n  line-height: 1.5;\n  color: ", ";\n  background-color: ", ";\n  background-clip: padding-box;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n  &:disabled {\n    background: #e6ebf1;\n    cursor: not-allowed;\n  }\n"], ["\n  border-radius: 4px;\n  border: 1px solid ", ";\n  box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.2);\n  margin: 10px 0 10px 0;\n  width: 100%;\n  box-sizing: border-box;\n  display: block;\n  padding: 0.5rem 1rem;\n  font-size: 1rem;\n  line-height: 1.5;\n  color: ", ";\n  background-color: ", ";\n  background-clip: padding-box;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n  &:disabled {\n    background: #e6ebf1;\n    cursor: not-allowed;\n  }\n"]);
 
 var Input = styled.input(_templateObject$7, function (props) {
   return props.borderColor || "#e6ebf1";
@@ -14044,7 +14044,7 @@ var curriedTransparentize =
 /*#__PURE__*/
 curry(transparentize);
 
-var _templateObject$9 = taggedTemplateLiteral(["\n  background: ", ";\n  color: ", ";\n  box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.2);\n  border: 0;\n  border-radius: 4px;\n  padding: 0.5rem 1rem;\n  font-size: 1.1rem;\n  line-height: 1.5;\n\n  cursor: pointer;\n  &:hover {\n    background: ", " !important;\n  }\n  &:active,\n  &:visited {\n    background: ", " !important;\n  }\n  &:focus {\n    outline: 0;\n    box-shadow: 0 0 0 3px ", ";\n  }\n  float: right;\n  &::after {\n    clear: right;\n  }\n"], ["\n  background: ", ";\n  color: ", ";\n  box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.2);\n  border: 0;\n  border-radius: 4px;\n  padding: 0.5rem 1rem;\n  font-size: 1.1rem;\n  line-height: 1.5;\n\n  cursor: pointer;\n  &:hover {\n    background: ", " !important;\n  }\n  &:active,\n  &:visited {\n    background: ", " !important;\n  }\n  &:focus {\n    outline: 0;\n    box-shadow: 0 0 0 3px ", ";\n  }\n  float: right;\n  &::after {\n    clear: right;\n  }\n"]);
+var _templateObject$9 = taggedTemplateLiteral(["\n  background: ", ";\n  color: ", ";\n  box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.2);\n  border: 0;\n  border-radius: 4px;\n  padding: 0.5rem 1rem;\n  font-size: 1.1rem;\n  line-height: 1.5;\n  cursor: pointer;\n  &:hover {\n    background: ", " !important;\n  }\n  &:active,\n  &:visited {\n    background: ", " !important;\n  }\n  &:focus {\n    outline: 0;\n    box-shadow: 0 0 0 3px ", ";\n  }\n  float: right;\n  &::after {\n    clear: right;\n  }\n  &:disabled {\n    cursor: not-allowed;\n    &:hover {\n      background: ", " !important;\n    }\n  }\n"], ["\n  background: ", ";\n  color: ", ";\n  box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.2);\n  border: 0;\n  border-radius: 4px;\n  padding: 0.5rem 1rem;\n  font-size: 1.1rem;\n  line-height: 1.5;\n  cursor: pointer;\n  &:hover {\n    background: ", " !important;\n  }\n  &:active,\n  &:visited {\n    background: ", " !important;\n  }\n  &:focus {\n    outline: 0;\n    box-shadow: 0 0 0 3px ", ";\n  }\n  float: right;\n  &::after {\n    clear: right;\n  }\n  &:disabled {\n    cursor: not-allowed;\n    &:hover {\n      background: ", " !important;\n    }\n  }\n"]);
 
 var Button = styled.button(_templateObject$9, function (props) {
   return props.primaryColor || "#6862A4";
@@ -14056,6 +14056,8 @@ var Button = styled.button(_templateObject$9, function (props) {
   return curriedDarken(0.1, props.primaryColor);
 }, function (props) {
   return curriedDarken(0.1, props.primaryColor);
+}, function (props) {
+  return props.primaryColor;
 });
 
 Button.defaultProps = {
@@ -14130,6 +14132,22 @@ Link.propTypes = {
   textColor: PropTypes.string
 };
 
+var _templateObject$d = taggedTemplateLiteral(["\n  border: 2px solid ", ";\n  border-top: 2px solid #f3f3f3;\n  border-radius: 50%;\n  width: 10px;\n  height: 10px;\n  display: inline-block;\n  margin-right: 4px;\n  animation: spin 2s linear infinite;\n  @keyframes spin {\n    0% {\n      transform: rotate(0deg);\n    }\n    100% {\n      transform: rotate(360deg);\n    }\n  }\n"], ["\n  border: 2px solid ", ";\n  border-top: 2px solid #f3f3f3;\n  border-radius: 50%;\n  width: 10px;\n  height: 10px;\n  display: inline-block;\n  margin-right: 4px;\n  animation: spin 2s linear infinite;\n  @keyframes spin {\n    0% {\n      transform: rotate(0deg);\n    }\n    100% {\n      transform: rotate(360deg);\n    }\n  }\n"]);
+
+var Spinner = styled.div(_templateObject$d, function (props) {
+  return curriedLighten(0.1, props.primaryColor);
+});
+
+Spinner.defaultProps = {
+  backgroundColor: "#fefefe",
+  primaryColor: "#6862A4"
+};
+
+Spinner.propTypes = {
+  backgroundColor: PropTypes.string,
+  primaryColor: PropTypes.string
+};
+
 var SignIn = function (_PureComponent) {
   inherits(SignIn, _PureComponent);
 
@@ -14154,7 +14172,8 @@ var SignIn = function (_PureComponent) {
           box = _props.box,
           validationMgs = _props.validationMgs,
           customError = _props.customError,
-          customErrorMsg = _props.customErrorMsg;
+          customErrorMsg = _props.customErrorMsg,
+          isSubmiting = _props.isSubmiting;
 
       return React.createElement(
         CardBody,
@@ -14197,7 +14216,11 @@ var SignIn = function (_PureComponent) {
                   name: "email",
                   render: function render(_ref2) {
                     var field = _ref2.field;
-                    return React.createElement(Input, _extends({}, field, { type: "email", placeholder: "Email" }));
+                    return React.createElement(Input, _extends({}, field, {
+                      type: "email",
+                      placeholder: "Email",
+                      disabled: isSubmiting
+                    }));
                   }
                 }),
                 errors.email && touched.email ? React.createElement(
@@ -14209,7 +14232,11 @@ var SignIn = function (_PureComponent) {
                   name: "password",
                   render: function render(_ref3) {
                     var field = _ref3.field;
-                    return React.createElement(Input, _extends({}, field, { type: "password", placeholder: "password" }));
+                    return React.createElement(Input, _extends({}, field, {
+                      type: "password",
+                      placeholder: "password",
+                      disabled: isSubmiting
+                    }));
                   }
                 }),
                 errors.password && touched.password ? React.createElement(
@@ -14224,7 +14251,12 @@ var SignIn = function (_PureComponent) {
                 ),
                 React.createElement(
                   Button,
-                  { primaryColor: primaryColor, type: "submit" },
+                  {
+                    primaryColor: primaryColor,
+                    type: "submit",
+                    disabled: isSubmiting
+                  },
+                  isSubmiting && React.createElement(Spinner, null),
                   submitText
                 )
               );
@@ -14271,7 +14303,8 @@ SignIn.defaultProps = {
     }
   },
   customError: false,
-  customErrorMsg: ""
+  customErrorMsg: "",
+  isSubmiting: false
 };
 SignIn.propTypes = {
   title: PropTypes.string.isRequired,
@@ -14284,7 +14317,8 @@ SignIn.propTypes = {
   box: PropTypes.object,
   validationMgs: PropTypes.object.isRequired,
   customError: PropTypes.bool,
-  customErrorMsg: PropTypes.string
+  customErrorMsg: PropTypes.string,
+  isSubmiting: PropTypes.bool
 };
 
 var SignUp = function (_PureComponent) {
@@ -14312,7 +14346,8 @@ var SignUp = function (_PureComponent) {
           privacyUrl = _props.privacyUrl,
           validationMgs = _props.validationMgs,
           customError = _props.customError,
-          customErrorMsg = _props.customErrorMsg;
+          customErrorMsg = _props.customErrorMsg,
+          isSubmiting = _props.isSubmiting;
 
 
       return React.createElement(
@@ -14341,7 +14376,7 @@ var SignUp = function (_PureComponent) {
                 approvePrivacy: false
               },
               validationSchema: lib_9().shape({
-                username: lib_6().min(4, validationMgs.username.min).max(50, validationMgs.username.max).required(validationMgs.username.required),
+                username: lib_6().trim().lowercase(validationMgs.username.lowercase).strict().min(4, validationMgs.username.min).max(50, validationMgs.username.max).required(validationMgs.username.required),
                 email: lib_6().email(validationMgs.email.invalid).required(validationMgs.email.required),
                 password: lib_6().min(8, validationMgs.password.min).max(50, validationMgs.password.max).required(validationMgs.password.required),
                 approvePrivacy: lib_5().required(validationMgs.approvePrivacy.required)
@@ -14360,7 +14395,11 @@ var SignUp = function (_PureComponent) {
                   name: "username",
                   render: function render(_ref2) {
                     var field = _ref2.field;
-                    return React.createElement(Input, _extends({}, field, { type: "text", placeholder: "Username" }));
+                    return React.createElement(Input, _extends({}, field, {
+                      type: "text",
+                      placeholder: "Username",
+                      disabled: isSubmiting
+                    }));
                   }
                 }),
                 errors.username && touched.username ? React.createElement(
@@ -14372,7 +14411,11 @@ var SignUp = function (_PureComponent) {
                   name: "email",
                   render: function render(_ref3) {
                     var field = _ref3.field;
-                    return React.createElement(Input, _extends({}, field, { type: "email", placeholder: "Email" }));
+                    return React.createElement(Input, _extends({}, field, {
+                      type: "email",
+                      placeholder: "Email",
+                      disabled: isSubmiting
+                    }));
                   }
                 }),
                 errors.email && touched.email ? React.createElement(
@@ -14384,7 +14427,11 @@ var SignUp = function (_PureComponent) {
                   name: "password",
                   render: function render(_ref4) {
                     var field = _ref4.field;
-                    return React.createElement(Input, _extends({}, field, { type: "password", placeholder: "password" }));
+                    return React.createElement(Input, _extends({}, field, {
+                      type: "password",
+                      placeholder: "password",
+                      disabled: isSubmiting
+                    }));
                   }
                 }),
                 errors.password && touched.password ? React.createElement(
@@ -14403,7 +14450,8 @@ var SignUp = function (_PureComponent) {
                         id: "signupApprovedPrivacy",
                         type: "checkbox",
                         required: true,
-                        autoFocus: true
+                        autoFocus: true,
+                        disabled: isSubmiting
                       })),
                       " ",
                       React.createElement(
@@ -14426,7 +14474,12 @@ var SignUp = function (_PureComponent) {
                 ),
                 React.createElement(
                   Button,
-                  { primaryColor: primaryColor, type: "submit" },
+                  {
+                    primaryColor: primaryColor,
+                    type: "submit",
+                    disabled: isSubmiting
+                  },
+                  isSubmiting && React.createElement(Spinner, null),
                   submitText
                 )
               );
@@ -14463,6 +14516,7 @@ SignUp.defaultProps = {
   boxUrl: "/signup",
   validationMgs: {
     username: {
+      lowercase: "username must be a lowercase string",
       min: "Too Short!",
       max: "Too Long!",
       required: "Required"
@@ -14481,7 +14535,8 @@ SignUp.defaultProps = {
     }
   },
   customError: false,
-  customErrorMsg: ""
+  customErrorMsg: "",
+  isSubmiting: false
 };
 SignUp.propTypes = {
   title: PropTypes.string.isRequired,
@@ -14495,12 +14550,13 @@ SignUp.propTypes = {
   box: PropTypes.object,
   validationMgs: PropTypes.object.isRequired,
   customError: PropTypes.bool,
-  customErrorMsg: PropTypes.string
+  customErrorMsg: PropTypes.string,
+  isSubmiting: PropTypes.bool
 };
 
-var _templateObject$d = taggedTemplateLiteral(["\n  body {\n    background-color: ", " !important;\n    width: 100%;\n    height: 100vh;\n   }\n"], ["\n  body {\n    background-color: ", " !important;\n    width: 100%;\n    height: 100vh;\n   }\n"]);
+var _templateObject$e = taggedTemplateLiteral(["\n  body {\n    background-color: ", " !important;\n    width: 100%;\n    height: 100vh;\n   }\n"], ["\n  body {\n    background-color: ", " !important;\n    width: 100%;\n    height: 100vh;\n   }\n"]);
 
-var GlobalStyle = createGlobalStyle(_templateObject$d, function (props) {
+var GlobalStyle = createGlobalStyle(_templateObject$e, function (props) {
   return props.backgroundColor || "#E7EBF0";
 });
 

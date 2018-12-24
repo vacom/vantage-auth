@@ -12,7 +12,6 @@ const Button = styled.button`
   padding: 0.5rem 1rem;
   font-size: 1.1rem;
   line-height: 1.5;
-
   cursor: pointer;
   &:hover {
     background: ${props => lighten(0.1, props.primaryColor)} !important;
@@ -28,6 +27,12 @@ const Button = styled.button`
   float: right;
   &::after {
     clear: right;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    &:hover {
+      background: ${props => props.primaryColor} !important;
+    }
   }
 `;
 
