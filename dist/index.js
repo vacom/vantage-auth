@@ -14124,10 +14124,12 @@ Error$1.propTypes = {
   textColor: PropTypes.string
 };
 
-var _templateObject$c = taggedTemplateLiteral(["\n  color: ", ";\n  text-decoration: none;\n"], ["\n  color: ", ";\n  text-decoration: none;\n"]);
+var _templateObject$c = taggedTemplateLiteral(["\n  color: ", ";\n  text-decoration: none;\n  &:hover {\n    color: ", ";\n    cursor: pointer;\n  }\n"], ["\n  color: ", ";\n  text-decoration: none;\n  &:hover {\n    color: ", ";\n    cursor: pointer;\n  }\n"]);
 
 var Link = styled__default.a(_templateObject$c, function (props) {
   return props.textColor;
+}, function (props) {
+  return curriedDarken(0.4, props.textColor);
 });
 
 Link.defaultProps = {
@@ -14181,7 +14183,10 @@ var SignIn = function (_PureComponent) {
           validationMgs = _props.validationMgs,
           customError = _props.customError,
           customErrorMsg = _props.customErrorMsg,
-          isSubmiting = _props.isSubmiting;
+          isSubmiting = _props.isSubmiting,
+          enableForgotPassword = _props.enableForgotPassword,
+          forgotPasswordText = _props.forgotPasswordText,
+          forgotPasswordUrl = _props.forgotPasswordUrl;
 
       return React__default.createElement(
         CardBody,
@@ -14252,6 +14257,11 @@ var SignIn = function (_PureComponent) {
                   null,
                   errors.password
                 ) : null,
+                enableForgotPassword && React__default.createElement(
+                  Link,
+                  { href: forgotPasswordUrl },
+                  forgotPasswordText
+                ),
                 customError && React__default.createElement(
                   Error$1,
                   null,
@@ -14273,7 +14283,7 @@ var SignIn = function (_PureComponent) {
         ),
         React__default.createElement(
           Box,
-          box,
+          _extends({}, box, { marginTop: enableForgotPassword && "120px" }),
           React__default.createElement(
             Text,
             null,
@@ -14299,6 +14309,9 @@ SignIn.defaultProps = {
   boxText: "Do not have an account yet?",
   boxAction: "Sign Up",
   boxUrl: "/signup",
+  forgotPasswordText: "Forgot password?",
+  forgotPasswordUrl: "#",
+  enableForgotPassword: false,
   validationMgs: {
     email: {
       invalid: "Invalid email",
@@ -14326,7 +14339,10 @@ SignIn.propTypes = {
   validationMgs: PropTypes.object.isRequired,
   customError: PropTypes.bool,
   customErrorMsg: PropTypes.string,
-  isSubmiting: PropTypes.bool
+  isSubmiting: PropTypes.bool,
+  forgotPasswordText: PropTypes.string,
+  forgotPasswordUrl: PropTypes.string,
+  enableForgotPassword: PropTypes.bool
 };
 
 var SignUp = function (_PureComponent) {
@@ -14562,6 +14578,156 @@ SignUp.propTypes = {
   isSubmiting: PropTypes.bool
 };
 
+var ForgotPassword = function (_PureComponent) {
+  inherits(ForgotPassword, _PureComponent);
+
+  function ForgotPassword() {
+    classCallCheck(this, ForgotPassword);
+    return possibleConstructorReturn(this, (ForgotPassword.__proto__ || Object.getPrototypeOf(ForgotPassword)).apply(this, arguments));
+  }
+
+  createClass(ForgotPassword, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          title = _props.title,
+          description = _props.description,
+          submitText = _props.submitText,
+          boxText = _props.boxText,
+          boxAction = _props.boxAction,
+          boxUrl = _props.boxUrl,
+          primaryColor = _props.primaryColor,
+          box = _props.box,
+          validationMgs = _props.validationMgs,
+          customError = _props.customError,
+          customErrorMsg = _props.customErrorMsg,
+          isSubmiting = _props.isSubmiting;
+
+      return React__default.createElement(
+        CardBody,
+        null,
+        React__default.createElement(
+          Container,
+          null,
+          React__default.createElement(
+            Title,
+            null,
+            title
+          ),
+          React__default.createElement(
+            Text,
+            null,
+            description
+          ),
+          React__default.createElement(
+            Formik,
+            {
+              initialValues: {
+                email: ""
+              },
+              validationSchema: lib_9().shape({
+                email: lib_6().email(validationMgs.email.invalid).required(validationMgs.email.required)
+              }),
+              onSubmit: function onSubmit(values) {
+                _this2.props.handleSubmit(values);
+              }
+            },
+            function (_ref) {
+              var errors = _ref.errors,
+                  touched = _ref.touched;
+              return React__default.createElement(
+                Form,
+                null,
+                React__default.createElement(Field, {
+                  name: "email",
+                  render: function render(_ref2) {
+                    var field = _ref2.field;
+                    return React__default.createElement(Input, _extends({}, field, {
+                      type: "email",
+                      placeholder: "Email",
+                      disabled: isSubmiting
+                    }));
+                  }
+                }),
+                errors.email && touched.email ? React__default.createElement(
+                  Error$1,
+                  null,
+                  errors.email
+                ) : null,
+                customError && React__default.createElement(
+                  Error$1,
+                  null,
+                  customErrorMsg
+                ),
+                React__default.createElement(
+                  Button,
+                  {
+                    primaryColor: primaryColor,
+                    type: "submit",
+                    disabled: isSubmiting
+                  },
+                  isSubmiting && React__default.createElement(Spinner, null),
+                  submitText
+                )
+              );
+            }
+          )
+        ),
+        React__default.createElement(
+          Box,
+          _extends({}, box, { marginTop: "200px" }),
+          React__default.createElement(
+            Text,
+            null,
+            boxText,
+            " ",
+            React__default.createElement(
+              Link,
+              { href: boxUrl },
+              boxAction
+            )
+          )
+        )
+      );
+    }
+  }]);
+  return ForgotPassword;
+}(React.PureComponent);
+
+ForgotPassword.defaultProps = {
+  title: "Did you forgot your password?",
+  description: "Enter your email address you´re using for your account below and we will send you a password reset link",
+  submitText: "Request reset link",
+  boxText: "Do not have an account yet?",
+  boxAction: "Sign Up",
+  boxUrl: "/signup",
+  validationMgs: {
+    email: {
+      invalid: "Invalid email",
+      required: "Required"
+    }
+  },
+  customError: false,
+  customErrorMsg: "",
+  isSubmiting: false
+};
+ForgotPassword.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  boxText: PropTypes.string,
+  boxAction: PropTypes.string,
+  boxUrl: PropTypes.string.isRequired,
+  primaryColor: PropTypes.string,
+  box: PropTypes.object,
+  validationMgs: PropTypes.object.isRequired,
+  customError: PropTypes.bool,
+  customErrorMsg: PropTypes.string,
+  isSubmiting: PropTypes.bool
+};
+
 var _templateObject$e = taggedTemplateLiteral(["\n  body {\n    background-color: ", " !important;\n    width: 100%;\n    height: 100vh;\n   }\n"], ["\n  body {\n    background-color: ", " !important;\n    width: 100%;\n    height: 100vh;\n   }\n"]);
 
 var GlobalStyle = styled.createGlobalStyle(_templateObject$e, function (props) {
@@ -14603,4 +14769,5 @@ ExampleComponent.propTypes = {
 exports.default = ExampleComponent;
 exports.SignIn = SignIn;
 exports.SignUp = SignUp;
+exports.ForgotPassword = ForgotPassword;
 //# sourceMappingURL=index.js.map

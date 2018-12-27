@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Auth, { SignIn, SignUp } from "vantage-auth";
+import Auth, { SignIn, SignUp, ForgotPassword } from "vantage-auth";
 
 const config = {
   imgSrc: "http://i68.tinypic.com/2po1mcg.jpg",
@@ -21,6 +21,9 @@ const signInConfig = {
   boxAction: "Sign Up",
   boxUrl: "/signup",
   primaryColor: "#6862A4",
+  forgotPasswordText: "Forgot password?",
+  forgotPasswordUrl: "#",
+  enableForgotPassword: true,
   box: {
     backgroundColor: "#f6f4fd",
     borderColor: "#e6e1f7",
@@ -75,9 +78,33 @@ const signUpConfig = {
   }
 };
 
+const forgotPassConfig = {
+  title: "Did you forgot your password?",
+  description:
+    "Enter your email address you´re using for your account below and we will send you a password reset link",
+  submitText: "Request reset link",
+  boxText: "Do not have an account yet?",
+  boxAction: "Sign Up",
+  boxUrl: "/signup",
+  primaryColor: "#6862A4",
+  box: {
+    backgroundColor: "#f6f4fd",
+    borderColor: "#e6e1f7",
+    textColor: "#a189d6"
+  },
+  validationMgs: {
+    email: {
+      invalid: "Invalid email!",
+      required: "Email is Required"
+    }
+  },
+  customError: false,
+  customErrorMsg: "Error description"
+};
+
 export default class App extends Component {
   state = {
-    login: false,
+    login: 1,
     error: false,
     isSubmiting: false
   };
@@ -97,7 +124,7 @@ export default class App extends Component {
   render() {
     return (
       <Auth {...config}>
-        {this.state.login ? (
+        {this.state.login === 1 ? (
           <SignIn
             {...signInConfig}
             handleSubmit={this.signUser}
@@ -105,9 +132,15 @@ export default class App extends Component {
             customErrorMsg="Erro new error"
             isSubmiting={this.state.isSubmiting}
           />
-        ) : (
+        ) : this.state.login === 2 ? (
           <SignUp
             {...signUpConfig}
+            handleSubmit={this.signUser}
+            isSubmiting={this.state.isSubmiting}
+          />
+        ) : (
+          <ForgotPassword
+            {...forgotPassConfig}
             handleSubmit={this.signUser}
             isSubmiting={this.state.isSubmiting}
           />

@@ -14,25 +14,18 @@ import Error from "./components/Error";
 import Link from "./components/Link";
 import Spinner from "./components/Spinner";
 
-export default class SignIn extends PureComponent {
+export default class ForgotPassword extends PureComponent {
   static defaultProps = {
-    title: "Sign In",
-    description: "Welcome back, come fast! Your forms are waiting.",
-    submitText: "Sign in",
+    title: "Did you forgot your password?",
+    description:
+      "Enter your email address you´re using for your account below and we will send you a password reset link",
+    submitText: "Request reset link",
     boxText: "Do not have an account yet?",
     boxAction: "Sign Up",
     boxUrl: "/signup",
-    forgotPasswordText: "Forgot password?",
-    forgotPasswordUrl: "#",
-    enableForgotPassword: false,
     validationMgs: {
       email: {
         invalid: "Invalid email",
-        required: "Required"
-      },
-      password: {
-        min: "Too Short!",
-        max: "Too Long!",
         required: "Required"
       }
     },
@@ -52,10 +45,7 @@ export default class SignIn extends PureComponent {
     validationMgs: PropTypes.object.isRequired,
     customError: PropTypes.bool,
     customErrorMsg: PropTypes.string,
-    isSubmiting: PropTypes.bool,
-    forgotPasswordText: PropTypes.string,
-    forgotPasswordUrl: PropTypes.string,
-    enableForgotPassword: PropTypes.bool
+    isSubmiting: PropTypes.bool
   };
   render() {
     const {
@@ -70,10 +60,7 @@ export default class SignIn extends PureComponent {
       validationMgs,
       customError,
       customErrorMsg,
-      isSubmiting,
-      enableForgotPassword,
-      forgotPasswordText,
-      forgotPasswordUrl
+      isSubmiting
     } = this.props;
     return (
       <CardBody>
@@ -82,14 +69,9 @@ export default class SignIn extends PureComponent {
           <Text>{description}</Text>
           <Formik
             initialValues={{
-              email: "",
-              password: ""
+              email: ""
             }}
             validationSchema={Yup.object().shape({
-              password: Yup.string()
-                .min(8, validationMgs.password.min)
-                .max(50, validationMgs.password.max)
-                .required(validationMgs.password.required),
               email: Yup.string()
                 .email(validationMgs.email.invalid)
                 .required(validationMgs.email.required)
@@ -115,25 +97,6 @@ export default class SignIn extends PureComponent {
                   <Error>{errors.email}</Error>
                 ) : null}
 
-                <Field
-                  name="password"
-                  render={({ field }) => (
-                    <Input
-                      {...field}
-                      type="password"
-                      placeholder="password"
-                      disabled={isSubmiting}
-                    />
-                  )}
-                />
-                {errors.password && touched.password ? (
-                  <Error>{errors.password}</Error>
-                ) : null}
-
-                {enableForgotPassword && (
-                  <Link href={forgotPasswordUrl}>{forgotPasswordText}</Link>
-                )}
-
                 {customError && <Error>{customErrorMsg}</Error>}
 
                 <Button
@@ -148,7 +111,7 @@ export default class SignIn extends PureComponent {
             )}
           </Formik>
         </Container>
-        <Box {...box} marginTop={enableForgotPassword && "120px"}>
+        <Box {...box} marginTop={"200px"}>
           <Text>
             {boxText} <Link href={boxUrl}>{boxAction}</Link>
           </Text>

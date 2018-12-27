@@ -25,7 +25,7 @@ npm i vantage-auth or yarn add vantage-auth
 After installing the dependency, just import the components you need
 
 ```javascript
-import Auth, { SignIn, SignUp } from "vantage-auth";
+import Auth, { SignIn, SignUp, ForgotPassword } from "vantage-auth";
 ```
 
 ### Usage
@@ -92,14 +92,17 @@ Here you will find all possible properties for the SignIn component. They are no
 import Auth, { SignIn } from "vantage-auth";
 
 const signInConfig = {
-  title: "Sign In",
-  description: "Welcome back, come fast! Your forms are waiting.",
-  submitText: "Sign in",
-  boxText: "Do not have an account yet?",
-  boxAction: "Sign Up",
-  boxUrl: "/signup",
+  title: "Sign In", //isRequired
+  description: "Welcome back, come fast! Your forms are waiting.", //isRequired
+  submitText: "Sign in", //isRequired
+  boxText: "Do not have an account yet?", //isRequired
+  boxAction: "Sign Up", //isRequired
+  boxUrl: "/signup", //isRequired
   primaryColor: "#6862A4",
-  isSubmiting: false,
+  isSubmiting: false, //disables the inputs and give de loader indicator
+  forgotPasswordText: "Forgot password?",
+  forgotPasswordUrl: "#",
+  enableForgotPassword: false,
   box: {
     backgroundColor: "#f6f4fd",
     borderColor: "#e6e1f7",
@@ -115,7 +118,9 @@ const signInConfig = {
       max: "Password is Too Long!",
       required: "Password is Required"
     }
-  }
+  },
+  customError: false,
+  customErrorMsg: "Error description"
 };
 
 <Auth>
@@ -131,15 +136,15 @@ Here you will find all possible properties for the SignUp component. They are no
 import Auth, { SignUp } from "vantage-auth";
 
 const signUpConfig = {
-  title: "Sign Up",
-  description: "New life for static forms, no need for code or servers.",
-  submitText: "Sign up",
-  boxText: "Already have an account?",
-  boxAction: "Sign In",
-  boxUrl: "/signup",
+  title: "Sign Up", //isRequired
+  description: "New life for static forms, no need for code or servers.", //isRequired
+  submitText: "Sign up", //isRequired
+  boxText: "Already have an account?", //isRequired
+  boxAction: "Sign In", //isRequired
+  boxUrl: "/signup", //isRequired
   primaryColor: "#6862A4",
   privacyUrl: "http://www.privacy.com",
-  isSubmiting: false,
+  isSubmiting: false, //disables the inputs and give de loader indicator
   box: {
     backgroundColor: "#f6f4fd",
     borderColor: "#e6e1f7",
@@ -164,11 +169,49 @@ const signUpConfig = {
     approvePrivacy: {
       required: "approvePrivacy Required"
     }
-  }
+  },
+  customError: false,
+  customErrorMsg: "Error description"
 };
 
 <Auth>
   <SignUp {...signUpConfig} />
+</Auth>;
+```
+
+### Customize ForgotPassword
+
+Here you will find all possible properties for the ForgotPassword component. They are not require, in case of not seeing a certain properties the default is presented
+
+```javascript
+import Auth, { ForgotPassword } from "vantage-auth";
+
+const forgotPassConfig = {
+  title: "Did you forgot your password?", //isRequired
+  description:
+    "Enter your email address you´re using for your account below and we will send you a password reset link", //isRequired
+  submitText: "Request reset link", //isRequired
+  boxText: "Do not have an account yet?", //isRequired
+  boxAction: "Sign Up", //isRequired
+  boxUrl: "/signup", //isRequired
+  primaryColor: "#6862A4",
+  box: {
+    backgroundColor: "#f6f4fd",
+    borderColor: "#e6e1f7",
+    textColor: "#a189d6"
+  },
+  validationMgs: {
+    email: {
+      invalid: "Invalid email!",
+      required: "Email is Required"
+    }
+  },
+  customError: false,
+  customErrorMsg: "Error description"
+};
+
+<Auth>
+  <ForgotPassword {...forgotPassConfig} />
 </Auth>;
 ```
 

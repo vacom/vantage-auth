@@ -7,6 +7,7 @@ import Card from "./components/Card";
 import Details from "./Details";
 import { default as SignIn } from "./SignIn";
 import { default as SignUp } from "./SignUp";
+import { default as ForgotPassword } from "./ForgotPassword";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -34,4 +35,4 @@ export default class ExampleComponent extends Component {
   }
 }
 
-export { SignIn, SignUp };
+export { SignIn, SignUp, ForgotPassword };
