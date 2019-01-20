@@ -3,3 +3,20 @@ body {
   padding: 0;
   font-family: "Roboto", sans-serif;
 }
+
+ul {
+  list-style: none;
+}
+
+ul li {
+  display: inline-block;
+  color: #495057;
+  margin-left: 20px;
+}
+
+ul li:hover {
+  cursor: pointer;
+  color: #343a6b;
+  font-weight: bold;
+}
+

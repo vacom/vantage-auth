@@ -119,6 +119,10 @@ const signInConfig = {
       required: "Password is Required"
     }
   },
+  placeholders: {
+    email: "Email",
+    password: "Password"
+  },
   customError: false,
   customErrorMsg: "Error description"
 };
@@ -144,6 +148,7 @@ const signUpConfig = {
   boxUrl: "/signup", //isRequired
   primaryColor: "#6862A4",
   privacyUrl: "http://www.privacy.com",
+  privacyText: "Accept the Terms and Privacy Policy",
   isSubmiting: false, //disables the inputs and give de loader indicator
   box: {
     backgroundColor: "#f6f4fd",
@@ -169,6 +174,11 @@ const signUpConfig = {
     approvePrivacy: {
       required: "approvePrivacy Required"
     }
+  },
+  placeholders: {
+    username: "Username",
+    email: "Email",
+    password: "Password"
   },
   customError: false,
   customErrorMsg: "Error description"
@@ -206,12 +216,60 @@ const forgotPassConfig = {
       required: "Email is Required"
     }
   },
+  placeholders: {
+    email: "Email"
+  },
   customError: false,
   customErrorMsg: "Error description"
 };
 
 <Auth>
-  <ForgotPassword {...forgotPassConfig} />
+  <ForgotPassword
+    handleSubmit={() => console.log("resend email.")}
+    {...forgotPassConfig}
+  />
+</Auth>;
+```
+
+### Customize CodeVerification
+
+Here you will find all possible properties for the CodeVerification component. They are not require, in case of not seeing a certain properties the default is presented
+
+```javascript
+import Auth, { CodeVerification } from "vantage-auth";
+
+const codeVerificationConfig = {
+  title: "Please confirm your email",
+  description:
+    "We like real people, we need to know if it's not a ghost of the internet.",
+  submitText: "Confirm Account",
+  boxText: "Resend confirmation code?",
+  boxAction: "submit",
+  primaryColor: "#6862A4",
+  box: {
+    backgroundColor: "#f6f4fd",
+    borderColor: "#e6e1f7",
+    textColor: "#a189d6"
+  },
+  validationMgs: {
+    code: {
+      required: "The verification code required"
+    }
+  },
+  placeholders: {
+    code: "Confirmation Code"
+  },
+  customError: false,
+  customErrorMsg: "Error description"
+};
+
+<Auth>
+  <CodeVerification
+    handleBoxAction={() => console.log("resend code.")}
+    handleSubmit={() => console.log("submit code.")}
+    isSubmiting={true | false}
+    {...codeVerificationConfig}
+  />
 </Auth>;
 ```
 

@@ -8,6 +8,7 @@ import Details from "./Details";
 import { default as SignIn } from "./SignIn";
 import { default as SignUp } from "./SignUp";
 import { default as ForgotPassword } from "./ForgotPassword";
+import { default as CodeVerification } from "./CodeVerification";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -17,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
    }
 `;
 
-export default class ExampleComponent extends Component {
+export default class Auth extends Component {
   static propTypes = {
     children: PropTypes.any.isRequired,
     backgroundColor: PropTypes.string
@@ -35,4 +36,4 @@ export default class ExampleComponent extends Component {
   }
 }
 
-export { SignIn, SignUp, ForgotPassword };
+export { SignIn, SignUp, ForgotPassword, CodeVerification };

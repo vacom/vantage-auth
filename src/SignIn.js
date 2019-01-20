@@ -36,6 +36,10 @@ export default class SignIn extends PureComponent {
         required: "Required"
       }
     },
+    placeholders: {
+      email: "Email",
+      password: "Password"
+    },
     customError: false,
     customErrorMsg: "",
     isSubmiting: false
@@ -50,6 +54,7 @@ export default class SignIn extends PureComponent {
     primaryColor: PropTypes.string,
     box: PropTypes.object,
     validationMgs: PropTypes.object.isRequired,
+    placeholders: PropTypes.object.isRequired,
     customError: PropTypes.bool,
     customErrorMsg: PropTypes.string,
     isSubmiting: PropTypes.bool,
@@ -73,7 +78,8 @@ export default class SignIn extends PureComponent {
       isSubmiting,
       enableForgotPassword,
       forgotPasswordText,
-      forgotPasswordUrl
+      forgotPasswordUrl,
+      placeholders
     } = this.props;
     return (
       <CardBody>
@@ -106,7 +112,7 @@ export default class SignIn extends PureComponent {
                     <Input
                       {...field}
                       type="email"
-                      placeholder="Email"
+                      placeholder={placeholders.email}
                       disabled={isSubmiting}
                     />
                   )}
@@ -121,7 +127,7 @@ export default class SignIn extends PureComponent {
                     <Input
                       {...field}
                       type="password"
-                      placeholder="password"
+                      placeholder={placeholders.password}
                       disabled={isSubmiting}
                     />
                   )}

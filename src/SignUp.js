@@ -22,6 +22,8 @@ export default class SignUp extends PureComponent {
     boxText: "Already have an account?",
     boxAction: "Sign In",
     boxUrl: "/signup",
+    privacyUrl: "http://www.privacy.com",
+    privacyText: "Accept the Terms and Privacy Policy",
     validationMgs: {
       username: {
         lowercase: "username must be a lowercase string",
@@ -42,6 +44,11 @@ export default class SignUp extends PureComponent {
         required: "Required"
       }
     },
+    placeholders: {
+      username: "Username",
+      email: "Email",
+      password: "Password"
+    },
     customError: false,
     customErrorMsg: "",
     isSubmiting: false
@@ -50,6 +57,7 @@ export default class SignUp extends PureComponent {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     privacyUrl: PropTypes.string.isRequired,
+    privacyText: PropTypes.string,
     handleSubmit: PropTypes.func.isRequired,
     boxText: PropTypes.string,
     boxAction: PropTypes.string,
@@ -57,6 +65,7 @@ export default class SignUp extends PureComponent {
     primaryColor: PropTypes.string,
     box: PropTypes.object,
     validationMgs: PropTypes.object.isRequired,
+    placeholders: PropTypes.object.isRequired,
     customError: PropTypes.bool,
     customErrorMsg: PropTypes.string,
     isSubmiting: PropTypes.bool
@@ -72,9 +81,11 @@ export default class SignUp extends PureComponent {
       primaryColor,
       box,
       privacyUrl,
+      privacyText,
       validationMgs,
       customError,
       customErrorMsg,
+      placeholders,
       isSubmiting
     } = this.props;
 
@@ -121,7 +132,7 @@ export default class SignUp extends PureComponent {
                     <Input
                       {...field}
                       type="text"
-                      placeholder="Username"
+                      placeholder={placeholders.username}
                       disabled={isSubmiting}
                     />
                   )}
@@ -136,7 +147,7 @@ export default class SignUp extends PureComponent {
                     <Input
                       {...field}
                       type="email"
-                      placeholder="Email"
+                      placeholder={placeholders.email}
                       disabled={isSubmiting}
                     />
                   )}
@@ -151,7 +162,7 @@ export default class SignUp extends PureComponent {
                     <Input
                       {...field}
                       type="password"
-                      placeholder="password"
+                      placeholder={placeholders.password}
                       disabled={isSubmiting}
                     />
                   )}
@@ -173,7 +184,7 @@ export default class SignUp extends PureComponent {
                         disabled={isSubmiting}
                       />{" "}
                       <Link href={privacyUrl} target="_blank">
-                        Accept the Terms and Privacy Policy
+                        {privacyText}
                       </Link>
                     </span>
                   )}

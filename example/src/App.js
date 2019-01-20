@@ -1,6 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
-import Auth, { SignIn, SignUp, ForgotPassword } from "vantage-auth";
+import Auth, {
+  SignIn,
+  SignUp,
+  ForgotPassword,
+  CodeVerification
+} from "vantage-auth";
 
 const config = {
   imgSrc: "http://i68.tinypic.com/2po1mcg.jpg",
@@ -39,6 +44,10 @@ const signInConfig = {
       max: "Password is Too Long!",
       required: "Password is Required"
     }
+  },
+  placeholders: {
+    email: "Email",
+    password: "Password"
   }
 };
 
@@ -51,6 +60,7 @@ const signUpConfig = {
   boxUrl: "/signup",
   primaryColor: "#6862A4",
   privacyUrl: "http://www.privacy.com",
+  privacyText: "Accept the Terms and Privacy Policy",
   box: {
     backgroundColor: "#f6f4fd",
     borderColor: "#e6e1f7",
@@ -75,6 +85,11 @@ const signUpConfig = {
     approvePrivacy: {
       required: "approvePrivacy Required"
     }
+  },
+  placeholders: {
+    username: "Username",
+    email: "Email",
+    password: "Password"
   }
 };
 
@@ -97,6 +112,34 @@ const forgotPassConfig = {
       invalid: "Invalid email!",
       required: "Email is Required"
     }
+  },
+  placeholders: {
+    email: "Email"
+  },
+  customError: false,
+  customErrorMsg: "Error description"
+};
+
+const codeVerificationConfig = {
+  title: "Please confirm your email",
+  description:
+    "We like real people, we need to know if it's not a ghost of the internet.",
+  submitText: "Confirm Account",
+  boxText: "Resend confirmation code?",
+  boxAction: "submit",
+  primaryColor: "#6862A4",
+  box: {
+    backgroundColor: "#f6f4fd",
+    borderColor: "#e6e1f7",
+    textColor: "#a189d6"
+  },
+  validationMgs: {
+    code: {
+      required: "The verification code required"
+    }
+  },
+  placeholders: {
+    code: "Confirmation Code"
   },
   customError: false,
   customErrorMsg: "Error description"
@@ -123,29 +166,53 @@ export default class App extends Component {
   };
   render() {
     return (
-      <Auth {...config}>
-        {this.state.login === 1 ? (
-          <SignIn
-            {...signInConfig}
-            handleSubmit={this.signUser}
-            customError={this.state.error}
-            customErrorMsg="Erro new error"
-            isSubmiting={this.state.isSubmiting}
-          />
-        ) : this.state.login === 2 ? (
-          <SignUp
-            {...signUpConfig}
-            handleSubmit={this.signUser}
-            isSubmiting={this.state.isSubmiting}
-          />
-        ) : (
-          <ForgotPassword
-            {...forgotPassConfig}
-            handleSubmit={this.signUser}
-            isSubmiting={this.state.isSubmiting}
-          />
-        )}
-      </Auth>
+      <Fragment>
+        <ul>
+          <li>Demos:</li>
+          <li>
+            <a onClick={() => this.setState({ login: 1 })}>Sign In</a>
+          </li>
+          <li>
+            <a onClick={() => this.setState({ login: 2 })}>Sign Up</a>
+          </li>
+          <li>
+            <a onClick={() => this.setState({ login: 3 })}>Verification Code</a>
+          </li>
+          <li>
+            <a onClick={() => this.setState({ login: 4 })}>Forgo Password</a>
+          </li>
+        </ul>
+        <Auth {...config}>
+          {this.state.login === 1 ? (
+            <SignIn
+              {...signInConfig}
+              handleSubmit={this.signUser}
+              customError={this.state.error}
+              customErrorMsg="Erro new error"
+              isSubmiting={this.state.isSubmiting}
+            />
+          ) : this.state.login === 2 ? (
+            <SignUp
+              {...signUpConfig}
+              handleSubmit={this.signUser}
+              isSubmiting={this.state.isSubmiting}
+            />
+          ) : this.state.login === 3 ? (
+            <CodeVerification
+              {...codeVerificationConfig}
+              handleBoxAction={() => console.log("resend code.")}
+              handleSubmit={this.signUser}
+              isSubmiting={this.state.isSubmiting}
+            />
+          ) : (
+            <ForgotPassword
+              {...forgotPassConfig}
+              handleSubmit={this.signUser}
+              isSubmiting={this.state.isSubmiting}
+            />
+          )}
+        </Auth>
+      </Fragment>
     );
   }
 }

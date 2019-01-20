@@ -14,23 +14,21 @@ import Error from "./components/Error";
 import Link from "./components/Link";
 import Spinner from "./components/Spinner";
 
-export default class ForgotPassword extends PureComponent {
+export default class CodeVerification extends PureComponent {
   static defaultProps = {
-    title: "Did you forgot your password?",
+    title: "Please confirm your email",
     description:
-      "Enter your email address you´re using for your account below and we will send you a password reset link",
-    submitText: "Request reset link",
-    boxText: "Do not have an account yet?",
-    boxAction: "Sign Up",
-    boxUrl: "/signup",
+      "We like real people, we need to know if it's not a ghost of the internet.",
+    submitText: "Confirm Account",
+    boxText: "Resend confirmation code?",
+    boxAction: "submit",
     validationMgs: {
-      email: {
-        invalid: "Invalid email",
-        required: "Required"
+      code: {
+        required: "The verification code required"
       }
     },
     placeholders: {
-      email: "Email"
+      code: "Confirmation Code"
     },
     customError: false,
     customErrorMsg: "",
@@ -40,9 +38,9 @@ export default class ForgotPassword extends PureComponent {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
+    handleBoxAction: PropTypes.func.isRequired,
     boxText: PropTypes.string,
     boxAction: PropTypes.string,
-    boxUrl: PropTypes.string.isRequired,
     primaryColor: PropTypes.string,
     box: PropTypes.object,
     validationMgs: PropTypes.object.isRequired,
@@ -58,7 +56,7 @@ export default class ForgotPassword extends PureComponent {
       submitText,
       boxText,
       boxAction,
-      boxUrl,
+      handleBoxAction,
       primaryColor,
       box,
       validationMgs,
@@ -74,12 +72,10 @@ export default class ForgotPassword extends PureComponent {
           <Text>{description}</Text>
           <Formik
             initialValues={{
-              email: ""
+              code: ""
             }}
             validationSchema={Yup.object().shape({
-              email: Yup.string()
-                .email(validationMgs.email.invalid)
-                .required(validationMgs.email.required)
+              code: Yup.string().required(validationMgs.code.required)
             })}
             onSubmit={values => {
               this.props.handleSubmit(values);
@@ -88,18 +84,18 @@ export default class ForgotPassword extends PureComponent {
             {({ errors, touched }) => (
               <Form>
                 <Field
-                  name="email"
+                  name="code"
                   render={({ field }) => (
                     <Input
                       {...field}
-                      type="email"
-                      placeholder={placeholders.email}
+                      type="text"
+                      placeholder={placeholders.code}
                       disabled={isSubmiting}
                     />
                   )}
                 />
-                {errors.email && touched.email ? (
-                  <Error>{errors.email}</Error>
+                {errors.code && touched.code ? (
+                  <Error>{errors.code}</Error>
                 ) : null}
 
                 {customError && <Error>{customErrorMsg}</Error>}
@@ -118,7 +114,7 @@ export default class ForgotPassword extends PureComponent {
         </Container>
         <Box {...box} marginTop={"200px"}>
           <Text>
-            {boxText} <Link href={boxUrl}>{boxAction}</Link>
+            {boxText} <Link onClick={handleBoxAction}>{boxAction}</Link>
           </Text>
         </Box>
       </CardBody>

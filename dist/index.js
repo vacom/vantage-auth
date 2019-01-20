@@ -115,7 +115,7 @@ var Title = styled__default.h2(_templateObject$2, function (props) {
 }, function (props) {
   return props.highlight && "bold";
 }, function (props) {
-  return props.isLogo && "font-size: 28px;\n    margin-bottom: 0px;";
+  return props.isLogo && "\n    margin-top: 23px;\n    font-size: 28px;\n    margin-bottom: 0px;";
 });
 
 Title.defaultProps = {
@@ -4676,7 +4676,6 @@ function (_super) {
 var ErrorMessage =
 /*#__PURE__*/
 connect(ErrorMessageImpl);
-//# sourceMappingURL=formik.esm.js.map
 
 var interopRequireDefault$1 = createCommonjsModule(function (module) {
 function _interopRequireDefault(obj) {
@@ -14186,7 +14185,8 @@ var SignIn = function (_PureComponent) {
           isSubmiting = _props.isSubmiting,
           enableForgotPassword = _props.enableForgotPassword,
           forgotPasswordText = _props.forgotPasswordText,
-          forgotPasswordUrl = _props.forgotPasswordUrl;
+          forgotPasswordUrl = _props.forgotPasswordUrl,
+          placeholders = _props.placeholders;
 
       return React__default.createElement(
         CardBody,
@@ -14231,7 +14231,7 @@ var SignIn = function (_PureComponent) {
                     var field = _ref2.field;
                     return React__default.createElement(Input, _extends({}, field, {
                       type: "email",
-                      placeholder: "Email",
+                      placeholder: placeholders.email,
                       disabled: isSubmiting
                     }));
                   }
@@ -14247,7 +14247,7 @@ var SignIn = function (_PureComponent) {
                     var field = _ref3.field;
                     return React__default.createElement(Input, _extends({}, field, {
                       type: "password",
-                      placeholder: "password",
+                      placeholder: placeholders.password,
                       disabled: isSubmiting
                     }));
                   }
@@ -14323,6 +14323,10 @@ SignIn.defaultProps = {
       required: "Required"
     }
   },
+  placeholders: {
+    email: "Email",
+    password: "Password"
+  },
   customError: false,
   customErrorMsg: "",
   isSubmiting: false
@@ -14337,6 +14341,7 @@ SignIn.propTypes = {
   primaryColor: PropTypes.string,
   box: PropTypes.object,
   validationMgs: PropTypes.object.isRequired,
+  placeholders: PropTypes.object.isRequired,
   customError: PropTypes.bool,
   customErrorMsg: PropTypes.string,
   isSubmiting: PropTypes.bool,
@@ -14368,9 +14373,11 @@ var SignUp = function (_PureComponent) {
           primaryColor = _props.primaryColor,
           box = _props.box,
           privacyUrl = _props.privacyUrl,
+          privacyText = _props.privacyText,
           validationMgs = _props.validationMgs,
           customError = _props.customError,
           customErrorMsg = _props.customErrorMsg,
+          placeholders = _props.placeholders,
           isSubmiting = _props.isSubmiting;
 
 
@@ -14421,7 +14428,7 @@ var SignUp = function (_PureComponent) {
                     var field = _ref2.field;
                     return React__default.createElement(Input, _extends({}, field, {
                       type: "text",
-                      placeholder: "Username",
+                      placeholder: placeholders.username,
                       disabled: isSubmiting
                     }));
                   }
@@ -14437,7 +14444,7 @@ var SignUp = function (_PureComponent) {
                     var field = _ref3.field;
                     return React__default.createElement(Input, _extends({}, field, {
                       type: "email",
-                      placeholder: "Email",
+                      placeholder: placeholders.email,
                       disabled: isSubmiting
                     }));
                   }
@@ -14453,7 +14460,7 @@ var SignUp = function (_PureComponent) {
                     var field = _ref4.field;
                     return React__default.createElement(Input, _extends({}, field, {
                       type: "password",
-                      placeholder: "password",
+                      placeholder: placeholders.password,
                       disabled: isSubmiting
                     }));
                   }
@@ -14481,7 +14488,7 @@ var SignUp = function (_PureComponent) {
                       React__default.createElement(
                         Link,
                         { href: privacyUrl, target: "_blank" },
-                        "Accept the Terms and Privacy Policy"
+                        privacyText
                       )
                     );
                   }
@@ -14538,6 +14545,8 @@ SignUp.defaultProps = {
   boxText: "Already have an account?",
   boxAction: "Sign In",
   boxUrl: "/signup",
+  privacyUrl: "http://www.privacy.com",
+  privacyText: "Accept the Terms and Privacy Policy",
   validationMgs: {
     username: {
       lowercase: "username must be a lowercase string",
@@ -14558,6 +14567,11 @@ SignUp.defaultProps = {
       required: "Required"
     }
   },
+  placeholders: {
+    username: "Username",
+    email: "Email",
+    password: "Password"
+  },
   customError: false,
   customErrorMsg: "",
   isSubmiting: false
@@ -14566,6 +14580,7 @@ SignUp.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   privacyUrl: PropTypes.string.isRequired,
+  privacyText: PropTypes.string,
   handleSubmit: PropTypes.func.isRequired,
   boxText: PropTypes.string,
   boxAction: PropTypes.string,
@@ -14573,6 +14588,7 @@ SignUp.propTypes = {
   primaryColor: PropTypes.string,
   box: PropTypes.object,
   validationMgs: PropTypes.object.isRequired,
+  placeholders: PropTypes.object.isRequired,
   customError: PropTypes.bool,
   customErrorMsg: PropTypes.string,
   isSubmiting: PropTypes.bool
@@ -14603,7 +14619,8 @@ var ForgotPassword = function (_PureComponent) {
           validationMgs = _props.validationMgs,
           customError = _props.customError,
           customErrorMsg = _props.customErrorMsg,
-          isSubmiting = _props.isSubmiting;
+          isSubmiting = _props.isSubmiting,
+          placeholders = _props.placeholders;
 
       return React__default.createElement(
         CardBody,
@@ -14646,7 +14663,7 @@ var ForgotPassword = function (_PureComponent) {
                     var field = _ref2.field;
                     return React__default.createElement(Input, _extends({}, field, {
                       type: "email",
-                      placeholder: "Email",
+                      placeholder: placeholders.email,
                       disabled: isSubmiting
                     }));
                   }
@@ -14709,6 +14726,9 @@ ForgotPassword.defaultProps = {
       required: "Required"
     }
   },
+  placeholders: {
+    email: "Email"
+  },
   customError: false,
   customErrorMsg: "",
   isSubmiting: false
@@ -14723,6 +14743,160 @@ ForgotPassword.propTypes = {
   primaryColor: PropTypes.string,
   box: PropTypes.object,
   validationMgs: PropTypes.object.isRequired,
+  placeholders: PropTypes.object.isRequired,
+  customError: PropTypes.bool,
+  customErrorMsg: PropTypes.string,
+  isSubmiting: PropTypes.bool
+};
+
+var CodeVerification = function (_PureComponent) {
+  inherits(CodeVerification, _PureComponent);
+
+  function CodeVerification() {
+    classCallCheck(this, CodeVerification);
+    return possibleConstructorReturn(this, (CodeVerification.__proto__ || Object.getPrototypeOf(CodeVerification)).apply(this, arguments));
+  }
+
+  createClass(CodeVerification, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          title = _props.title,
+          description = _props.description,
+          submitText = _props.submitText,
+          boxText = _props.boxText,
+          boxAction = _props.boxAction,
+          handleBoxAction = _props.handleBoxAction,
+          primaryColor = _props.primaryColor,
+          box = _props.box,
+          validationMgs = _props.validationMgs,
+          customError = _props.customError,
+          customErrorMsg = _props.customErrorMsg,
+          isSubmiting = _props.isSubmiting,
+          placeholders = _props.placeholders;
+
+      return React__default.createElement(
+        CardBody,
+        null,
+        React__default.createElement(
+          Container,
+          null,
+          React__default.createElement(
+            Title,
+            null,
+            title
+          ),
+          React__default.createElement(
+            Text,
+            null,
+            description
+          ),
+          React__default.createElement(
+            Formik,
+            {
+              initialValues: {
+                code: ""
+              },
+              validationSchema: lib_9().shape({
+                code: lib_6().required(validationMgs.code.required)
+              }),
+              onSubmit: function onSubmit(values) {
+                _this2.props.handleSubmit(values);
+              }
+            },
+            function (_ref) {
+              var errors = _ref.errors,
+                  touched = _ref.touched;
+              return React__default.createElement(
+                Form,
+                null,
+                React__default.createElement(Field, {
+                  name: "code",
+                  render: function render(_ref2) {
+                    var field = _ref2.field;
+                    return React__default.createElement(Input, _extends({}, field, {
+                      type: "text",
+                      placeholder: placeholders.code,
+                      disabled: isSubmiting
+                    }));
+                  }
+                }),
+                errors.code && touched.code ? React__default.createElement(
+                  Error$1,
+                  null,
+                  errors.code
+                ) : null,
+                customError && React__default.createElement(
+                  Error$1,
+                  null,
+                  customErrorMsg
+                ),
+                React__default.createElement(
+                  Button,
+                  {
+                    primaryColor: primaryColor,
+                    type: "submit",
+                    disabled: isSubmiting
+                  },
+                  isSubmiting && React__default.createElement(Spinner, null),
+                  submitText
+                )
+              );
+            }
+          )
+        ),
+        React__default.createElement(
+          Box,
+          _extends({}, box, { marginTop: "200px" }),
+          React__default.createElement(
+            Text,
+            null,
+            boxText,
+            " ",
+            React__default.createElement(
+              Link,
+              { onClick: handleBoxAction },
+              boxAction
+            )
+          )
+        )
+      );
+    }
+  }]);
+  return CodeVerification;
+}(React.PureComponent);
+
+CodeVerification.defaultProps = {
+  title: "Please confirm your email",
+  description: "We like real people, we need to know if it's not a ghost of the internet.",
+  submitText: "Confirm Account",
+  boxText: "Resend confirmation code?",
+  boxAction: "submit",
+  validationMgs: {
+    code: {
+      required: "The verification code required"
+    }
+  },
+  placeholders: {
+    code: "Confirmation Code"
+  },
+  customError: false,
+  customErrorMsg: "",
+  isSubmiting: false
+};
+CodeVerification.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleBoxAction: PropTypes.func.isRequired,
+  boxText: PropTypes.string,
+  boxAction: PropTypes.string,
+  primaryColor: PropTypes.string,
+  box: PropTypes.object,
+  validationMgs: PropTypes.object.isRequired,
+  placeholders: PropTypes.object.isRequired,
   customError: PropTypes.bool,
   customErrorMsg: PropTypes.string,
   isSubmiting: PropTypes.bool
@@ -14734,15 +14908,15 @@ var GlobalStyle = styled.createGlobalStyle(_templateObject$e, function (props) {
   return props.backgroundColor || "#E7EBF0";
 });
 
-var ExampleComponent = function (_Component) {
-  inherits(ExampleComponent, _Component);
+var Auth = function (_Component) {
+  inherits(Auth, _Component);
 
-  function ExampleComponent() {
-    classCallCheck(this, ExampleComponent);
-    return possibleConstructorReturn(this, (ExampleComponent.__proto__ || Object.getPrototypeOf(ExampleComponent)).apply(this, arguments));
+  function Auth() {
+    classCallCheck(this, Auth);
+    return possibleConstructorReturn(this, (Auth.__proto__ || Object.getPrototypeOf(Auth)).apply(this, arguments));
   }
 
-  createClass(ExampleComponent, [{
+  createClass(Auth, [{
     key: "render",
     value: function render() {
       return React__default.createElement(
@@ -14758,16 +14932,17 @@ var ExampleComponent = function (_Component) {
       );
     }
   }]);
-  return ExampleComponent;
+  return Auth;
 }(React.Component);
 
-ExampleComponent.propTypes = {
+Auth.propTypes = {
   children: PropTypes.any.isRequired,
   backgroundColor: PropTypes.string
 };
 
-exports.default = ExampleComponent;
+exports.default = Auth;
 exports.SignIn = SignIn;
 exports.SignUp = SignUp;
 exports.ForgotPassword = ForgotPassword;
+exports.CodeVerification = CodeVerification;
 //# sourceMappingURL=index.js.map

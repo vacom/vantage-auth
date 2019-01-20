@@ -7,7 +7,9 @@ const Title = styled.h2`
   font-weight: ${props => props.highlight && "bold"};
   ${props =>
     props.isLogo &&
-    `font-size: 28px;
+    `
+    margin-top: 23px;
+    font-size: 28px;
     margin-bottom: 0px;`}
 `;
 
