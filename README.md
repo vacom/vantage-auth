@@ -10,7 +10,7 @@ A reusable auth interface component for any React Application. Use this componen
 - Form validation
 - Customizable
 
-![Vantage-auth](http://i67.tinypic.com/2627ivn.jpg)
+![Vantage-auth](https://i.imgur.com/VPBFAz0.jpg)
 
 ## installation
 
@@ -330,7 +330,3 @@ class App extends Component {
   }
 }
 ```
-
-#### Result
-
-![Vantage-auth](http://i67.tinypic.com/amwj.png)
